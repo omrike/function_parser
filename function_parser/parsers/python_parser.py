@@ -87,6 +87,7 @@ class PythonParser(LanguageParser):
     def __get_docstring_node(function_node):
         docstring_node = [node for node in function_node.children if
                           node.type == 'expression_statement' and node.children[0].type == 'string']
+        docstring_node = [function_node.children[-1].children[0]] if function_node.children[-1].children[0].children[0].type == 'string' else []
         if len(docstring_node) > 0:
             return docstring_node[0].children[0]
         return None
@@ -168,7 +169,7 @@ class PythonParser(LanguageParser):
             function_metadata['docstring'] = PythonParser.get_docstring(docstring_node, blob)
             function_metadata['docstring_summary'] = get_docstring_summary(function_metadata['docstring'])
             function_metadata['function'] = match_from_span(function_node, blob)
-            function_metadata['function_tokens'] = tokenize_code(function_node, blob, {docstring_node})
+            function_metadata['function_tokens'] = tokenize_code(function_node, blob, [docstring_node])
             function_metadata['start_point'] = function_node.start_point
             function_metadata['end_point'] = function_node.end_point
 

@@ -38,7 +38,7 @@ def get_sha(tmp_dir: tempfile.TemporaryDirectory, nwo: str):
     # git rev-parse HEAD
     cmd = ['git', 'rev-parse', 'HEAD']
     sha = subprocess.check_output(cmd).strip().decode('utf-8')
-    os.chdir('/tmp')
+    # os.chdir('/tmp')
     return sha
 
 
