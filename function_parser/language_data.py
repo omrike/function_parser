@@ -4,6 +4,7 @@ from function_parser.parsers.javascript_parser import JavascriptParser
 from function_parser.parsers.php_parser import PhpParser
 from function_parser.parsers.python_parser import PythonParser
 from function_parser.parsers.ruby_parser import RubyParser
+from function_parser.parsers.haskell_parser import HaskellParser
 
 
 LANGUAGE_METADATA = {
@@ -36,5 +37,10 @@ LANGUAGE_METADATA = {
         'platform': 'rubygems',
         'ext': 'rb',
         'language_parser': RubyParser
-    }
+    },
+    'haskell': {
+        'platform': 'cabal',
+        'ext': 'hs',
+        'language_parser': HaskellParser
+    },
 }
